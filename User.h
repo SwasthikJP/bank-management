@@ -17,7 +17,6 @@ class Node_User
     Node_User *right;
     int acc;
     string name;
-    // string cnic;
     string phone;
     string age;
     string email;
@@ -29,14 +28,12 @@ class Node_User
         right=0;
         acc=0;
         name='\0';
-        // cnic='\0';
         phone='\0';
         age='\0';
         email='\0';
         bdate='\0';
     }
     // Parametrized Constructor
-    // Node_User(int a, Node_User *l=0,Node_User *r=0,string na=0,string nic=0,string ph=0,string age=0,string em=0,string b_d=0)
     Node_User(int a, Node_User *l=0,Node_User *r=0,string na=0,string ph=0,string age=0,string em=0,string b_d=0)
 
     {
@@ -44,8 +41,7 @@ class Node_User
         right=r;
         acc=a;
         name=na;
-        // cnic=nic;
-        phone=ph;
+         phone=ph;
         this->age=age;
         email=em;
         bdate=b_d;
@@ -64,23 +60,19 @@ class BST_User
 	}
     
     //Method to inset user personal information into the Binary Search Tree for users
-	// Node_User* insert(Node_User *root,int a,string na,string nic,string ph,string age,string em,string b_d)
 	Node_User* insert(Node_User *root,int a,string na,string ph,string age,string em,string b_d)
 
 	{
 		if (root == 0)
 		{
-			//  root = new Node_User(a,0,0,na,nic,ph,age,em,b_d);
 			 root = new Node_User(a,0,0,na,ph,age,em,b_d);
 
 		}
 		else if (a < root->acc)
 		{
-			// root->left = insert (root->left,a,na,nic,ph,age,em,b_d);
 			root->left = insert (root->left,a,na,ph,age,em,b_d);
 
 		}
-		// else root->right = insert(root->right,a,na,nic,ph,age,em,b_d);
 		else root->right = insert(root->right,a,na,ph,age,em,b_d);
 
 		return root;
@@ -93,7 +85,6 @@ class BST_User
 		if (n != 0)
 		{
 			inorder(n->left);
-			// cout<<n->acc<<"\t\t"<<n->cnic<<"\t\t"<<n->phone<<"\t\t"<<n->age<<"\t\t"<<n->email<<"\t\t"<<n->bdate<<"\t\t"<<n->name<<endl;
 			cout<<n->acc<<"\t\t"<<"\t\t"<<n->phone<<"\t\t"<<n->age<<"\t\t"<<n->email<<"\t\t"<<n->bdate<<"\t\t"<<n->name<<endl;
 			
 			inorder(n->right);
@@ -106,7 +97,6 @@ class BST_User
 	
 	    if (root->acc==a)
 	    {
-	        // cout<<root->acc<<"\t\t"<<root->cnic<<"\t\t"<<root->phone<<"\t"<<root->age<<"\t\t"<<root->email<<"\t\t"<<root->bdate<<"\t\t"<<root->name<<endl;
 	        cout<<root->acc<<"\t\t"<<"\t\t"<<root->phone<<"\t"<<root->age<<"\t\t"<<root->email<<"\t\t"<<root->bdate<<"\t\t"<<root->name<<endl;
 
 			return true;

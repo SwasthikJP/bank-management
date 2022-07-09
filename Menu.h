@@ -6,15 +6,7 @@
 #include "Bank.h"
 
 using namespace std;
-/*COORD line = {0,0};
-void pos(int x, int y)		
-{	
-	line.X=x;						
-	line.Y=y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),line);
-}*/
 
-// Class Menu
 
 class Menu
 {
@@ -45,18 +37,13 @@ class Menu
         while(choice!='0')
         {
             system("cls");
-            // pos(70,1);
             cout<<"---------------------------------------------"<<endl;
-            // pos(70,2);
-			cout<<"---------------------------------------------"<<endl;
-            // pos(70,3);
-			cout<<"                   USER                      "<<endl;
-            // pos(70,4);
-			cout<<"---------------------------------------------"<<endl;
+           cout<<"---------------------------------------------"<<endl;
+           cout<<"                   USER                      "<<endl;
+           cout<<"---------------------------------------------"<<endl;
             pos(70,5);
 			cout<<"---------------------------------------------"<<endl;
-            // pos(62,7);
-			cout<<"1-Display Information"<<endl;
+           cout<<"1-Display Information"<<endl;
 			pos(62,9);
 			cout<<"2-Check Balance"<<endl;
 			pos(62,11);
@@ -136,23 +123,14 @@ class Menu
         int account;
         int passcode;
         bool check;
-        // pos(70,1);
         cout<<"---------------------------------------------"<<endl;
-        // pos(70,2);
-		cout<<"---------------------------------------------"<<endl;
-        // pos(70,3);
-		cout<<"             LOGIN INT0 ACCOUNT              "<<endl;
-        // pos(70,4);
-		cout<<"---------------------------------------------"<<endl;
-        // pos(70,5);
-		cout<<"---------------------------------------------"<<endl;
-        // pos(62,7);
+       cout<<"---------------------------------------------"<<endl;
+       cout<<"             LOGIN INT0 ACCOUNT              "<<endl;
+      cout<<"---------------------------------------------"<<endl;
+       cout<<"---------------------------------------------"<<endl;
         cout<<"Enter Account no:"<<endl;
-        pos(81,7);
         cin>>account;
-        pos(62,9);
         cout<<"Enter Password:"<<endl;
-        pos(76,9);
         cin>>passcode;
         
         check= bank.check_account(account,passcode); // calls method to confirm login
@@ -176,10 +154,7 @@ class Menu
        
         cout<<"Enter Account no:"<<endl;
         cin>>account;
-        pos(62,9);
-        // cout<<"Enter Password:";
-        // pos(76,9);
-        // cin>>passcode;
+       
         
         check= bank.check_accountNumber(account); // calls method to confirm login
         
@@ -201,27 +176,15 @@ class Menu
         while (choice!='0')
         {
 			system("cls");
-			// pos(70,1);
-			// cout<<"---------------------------------------------"<<endl;
-			// pos(70,2);
-			// cout<<"---------------------------------------------"<<endl;
-			// pos(70,3);
+		
 			cout<<"                   USER                      "<<endl;
-			// pos(70,4);
 			cout<<"---------------------------------------------"<<endl;
-			// pos(70,5);
 			cout<<"---------------------------------------------"<<endl;
-			// pos(62,7);
 			cout<<"1-Create an Account"<<endl;
-			pos(62,9);
 			cout<<"2-Existing Account"<<endl;
-			pos(62,11);
 			cout<<"3-Back"<<endl;
-			pos(62,13);
 			cout<<"4-Exit"<<endl;
-			pos(62,15);
 			cout<<"Enter Choice : ";
-			pos(79,15);
 			cin>>choice;
 			
 			switch(choice)
@@ -229,32 +192,22 @@ class Menu
 				case '1':
 				{
 					system("CLS");
-					// pos(70,1);
-				    cout<<"---------------------------------------------"<<endl;
-				    // pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-				    // pos(70,3);
-					cout<<"               CREATE ACCOUNT                "<<endl;
-				    // pos(70,4);
-					cout<<"---------------------------------------------"<<endl;
-				    // pos(70,5);
-					cout<<"---------------------------------------------"<<endl;
+					  cout<<"---------------------------------------------"<<endl;
+				   cout<<"---------------------------------------------"<<endl;
+				   cout<<"               CREATE ACCOUNT                "<<endl;
+				   cout<<"---------------------------------------------"<<endl;
+				  cout<<"---------------------------------------------"<<endl;
 				    bank.add_account();
 				    break;
 				}
 				case '2':
 				{
 					system("CLS");
-					// pos(70,1);
-				    cout<<"---------------------------------------------"<<endl;
-				    // pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-				    // pos(70,3);
-					cout<<"               EXISTING ACCOUNT              "<<endl;
-				    // pos(70,4);
-					cout<<"---------------------------------------------"<<endl;
-				    // pos(70,5);
-					cout<<"---------------------------------------------"<<endl<<endl<<endl;
+					 cout<<"---------------------------------------------"<<endl;
+				  cout<<"---------------------------------------------"<<endl;
+				  cout<<"               EXISTING ACCOUNT              "<<endl;
+				  cout<<"---------------------------------------------"<<endl;
+				  cout<<"---------------------------------------------"<<endl<<endl<<endl;
 				    login_account();
 				    break;
 				}
@@ -286,28 +239,18 @@ class Menu
         while(choice!=0)
         {
             system("cls");
-            // pos(70,0);
             cout<<"---------------------------------------------"<<endl;
-            // pos(70,1);
-			cout<<"---------------------------------------------"<<endl;
-            // pos(70,2);
-			cout<<"                  ADMIN                      "<<endl;
-            // pos(70,3);
-			cout<<"---------------------------------------------"<<endl;
-            // pos(70,4);
-			cout<<"---------------------------------------------"<<endl;
-			// pos(62,6);
-            cout<<"1-Customer"<<endl;
-            pos(62,8);
-			cout<<"2-Employee"<<endl;
-			pos(62,10);
+           cout<<"---------------------------------------------"<<endl;
+           cout<<"                  ADMIN                      "<<endl;
+          cout<<"---------------------------------------------"<<endl;
+           cout<<"---------------------------------------------"<<endl;
+			  cout<<"1-Customer"<<endl;
+           cout<<"2-Employee"<<endl;
 			cout<<"3-Back"<<endl;
-			pos(62,12);
 			cout<<"4-Exit"<<endl;
 			
 			cout<<"Enter Choice : ";
-			pos(78,22);
-            cin>>choice;
+			 cin>>choice;
             switch(choice)
             {
                 ////
@@ -316,16 +259,11 @@ class Menu
                   int ch1=99;
                   while(ch1!=0){
                 system("CLS");
-                	pos(70,0);
+                	 cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                   cout<<"         CUSTOMER DETAILS        "<<endl;
+                   cout<<"---------------------------------------------"<<endl;
                     cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"         CUSTOMER DETAILS        "<<endl;
-                    pos(70,3);
-					cout<<"---------------------------------------------"<<endl;
-                   	pos(70,4);
-				    cout<<"---------------------------------------------"<<endl;
 
                      cout<<"1-Open new account"<<endl;
 			        cout<<"2-Open existing account"<<endl;
@@ -340,53 +278,40 @@ class Menu
 case 1:
                 {
                 	system("CLS");
-                	pos(70,0);
+                	 cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
+                   cout<<"               REGISTER ACCOUNT              "<<endl;
+                  cout<<"---------------------------------------------"<<endl;
                     cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"               REGISTER ACCOUNT              "<<endl;
-                    pos(70,3);
-					cout<<"---------------------------------------------"<<endl;
-                   	pos(70,4);
-				    cout<<"---------------------------------------------"<<endl;
                     bank.add_account();
                     break;
                 }
                 case 2:
                 {
                 	system("CLS");
-                	pos(70,1);
-                    cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,3);
-					cout<<"               OPEN EXISTING ACCOUNT                "<<endl;
-                    pos(70,4);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,5);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(62,7);
-				
+                	  cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
+                   cout<<"               OPEN EXISTING ACCOUNT                "<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                   
                     admin_Login();
                     break;
                 }
                 case 3:
                 {
                 	system("CLS");
-                	pos(70,1);
-                    cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,3);
+                	 cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
+                   
 					cout<<"               SEARCH ACCOUNT                "<<endl;
-                    pos(70,4);
+                   
 					cout<<"---------------------------------------------"<<endl;
-                    pos(70,5);
+                   
 					cout<<"---------------------------------------------"<<endl;
-                    pos(62,7);
+                 
 					cout<<"Enter the Account No to Search:";
-                    pos(93,7);
+                   
 					cin>>account;
                     bank.search_account(account);
                     break;
@@ -394,16 +319,11 @@ case 1:
                 case 4:
                 {
                 	system("CLS");
-                	pos(70,1);
-                    cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,3);
-					cout<<"       DISPLAY ALL THE ACCOUNTS/USER INFO    "<<endl;
-                    pos(70,4);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,5);
-					cout<<"---------------------------------------------"<<endl;
+                	cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                   cout<<"       DISPLAY ALL THE ACCOUNTS/USER INFO    "<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
                     bank.display_information();
                     break;
                 }
@@ -437,16 +357,11 @@ case 1:
                 int ch2=99;
                   while(ch2!=0){
                 system("CLS");
-                	pos(70,0);
+                	 cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                   cout<<"         EMPLOYEE DETAILS        "<<endl;
+                   cout<<"---------------------------------------------"<<endl;
                     cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"         EMPLOYEE DETAILS        "<<endl;
-                    pos(70,3);
-					cout<<"---------------------------------------------"<<endl;
-                   	pos(70,4);
-				    cout<<"---------------------------------------------"<<endl;
 
                     cout<<"1-Add new employee"<<endl;
 			        cout<<"2-Remove an employee"<<endl;
@@ -463,12 +378,10 @@ case 1:
                  {
                 	system("CLS");
                 	  cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
 					cout<<"           ADD EMPLOYEE               "<<endl;
                      cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
                    bank.add_employee();
                     break;
                 }
@@ -476,12 +389,10 @@ case 1:
                  {
                 	system("CLS");
                 	  cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
+                  	cout<<"---------------------------------------------"<<endl;
 					cout<<"           DELETE EMPLOYEE               "<<endl;
                       cout<<"---------------------------------------------"<<endl;
-                    pos(70,1);
-					cout<<"---------------------------------------------"<<endl;
+                  	cout<<"---------------------------------------------"<<endl;
                 cout<<"Enter Account Number: ";
                 cin>>account;
                     bank.delete_employee(account);
@@ -490,32 +401,22 @@ case 1:
                 case 3:
                 {
                 	system("CLS");
-                	pos(70,1);
-                    cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,3);
-					cout<<"            SEARCH EMPLOYEE                   "<<endl;
-                    pos(70,4);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,5);
-					cout<<"---------------------------------------------"<<endl;
+                	 cout<<"---------------------------------------------"<<endl;
+                   cout<<"---------------------------------------------"<<endl;
+                  cout<<"            SEARCH EMPLOYEE                   "<<endl;
+                  	cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
                     bank.search_employe();
                     break;
                 }
                 case 4:
                 {
                 	system("CLS");
-                	pos(70,1);
-                    cout<<"---------------------------------------------"<<endl;
-                    pos(70,2);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,3);
-					cout<<"           SHOW ALL EMPLOYEES                "<<endl;
-                    pos(70,4);
-					cout<<"---------------------------------------------"<<endl;
-                    pos(70,5);
-					cout<<"---------------------------------------------"<<endl;
+                	  cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
+                  cout<<"           SHOW ALL EMPLOYEES                "<<endl;
+                  cout<<"---------------------------------------------"<<endl;
+                  cout<<"---------------------------------------------"<<endl;
                     bank.show_all_employee();
                     break;
                 }
@@ -571,43 +472,33 @@ case 1:
     {
     	system("CLS");
     	int choice;
-    	pos(70,1);
+    	
     	cout<<"---------------------------------------------"<<endl;
-        pos(70,2);
+       
 		cout<<"---------------------------------------------"<<endl;
-        pos(70,3);
+       
 		cout<<"                  EMPLOYEE                   "<<endl;
-        pos(70,4);
+    
 		cout<<"---------------------------------------------"<<endl;
-        pos(70,5);
+      
 		cout<<"---------------------------------------------"<<endl;
-        pos(62,7);
+       
 		cout<<"1. Add Employee";
-		pos(62,9);
 		cout<<"2. Search Employee";
-		pos(62,11);
 		cout<<"3. Delete Employee";
-		pos(62,13);
 		cout<<"4. Back";
-        pos(62,15);
-		cout<<"Enter Choice : ";
-		pos(78,17);
-    	cin>>choice;
+      cout<<"Enter Choice : ";
+		cin>>choice;
     	switch(choice)
     	{
     		case 1:
     		{
     			system("CLS");
-    			pos(70,1);
     			cout<<"---------------------------------------------"<<endl;
-            	pos(70,2);
-				cout<<"---------------------------------------------"<<endl;
-               	pos(70,3);
-				cout<<"              REGISTER EMPLOYEE              "<<endl;
-                pos(70,4);
-				cout<<"---------------------------------------------"<<endl;
-                pos(70,5);
-				cout<<"---------------------------------------------"<<endl;
+            	cout<<"---------------------------------------------"<<endl;
+               cout<<"              REGISTER EMPLOYEE              "<<endl;
+               cout<<"---------------------------------------------"<<endl;
+               cout<<"---------------------------------------------"<<endl;
     			bank.add_employee();
     			break;
     		}
@@ -639,34 +530,27 @@ case 1:
         char choice='a';// Initialized with some random character
         while(choice!='0')
         {
-        	// pos(70,5);
-            // cout<<"---------------------------------------------"<<endl;
-            // pos(70,6);
+        	
 			cout<<"---------------------------------------------"<<endl;
-            // pos(70,7);
-			cout<<"                MAIN MENU                    "<<endl;
-            // pos(70,8);
+          cout<<"                MAIN MENU                    "<<endl;
+        
 			cout<<"---------------------------------------------"<<endl;
-            // pos(70,9);
-			cout<<"---------------------------------------------"<<endl;
-            // pos(62,12);
-			cout<<"1-Admin"<<endl;
-			pos(62,14);
+           cout<<"---------------------------------------------"<<endl;
+           cout<<"1-Admin"<<endl;
+			
 			cout<<"2-Customer"<<endl;
-			pos(62,16);
-			// cout<<"3-Employee"<<endl;
-			// pos(62,18);
+			
 			cout<<"3-Exit"<<endl;
-			pos(62,20);
+		
 			cout<<"Enter Choice : ";
             cin>>choice;
             switch(choice)
             {
                 case '1':
                 {
-                	pos(62,22);
+                	
                     cout<<"Enter the Password: "<<endl;
-                    pos(83,22);
+                 
                     cin>>pass;
                     if(pass==pass_admin)
                     admin();
@@ -683,23 +567,19 @@ case 1:
                     user();
                     break;
                 }
-                // case '3':
-                // {
-                //     employee();
-                //     break;
-                // }
+               
                 case '3':
                 {
                 	system("CLS");
-                	pos(70,20);
+                
                 	cout<<"---------------------------------------------"<<endl;
-                    pos(70,21);
+                  
 					cout<<"---------------------------------------------"<<endl;
-                    pos(70,22);
+                   
 					cout<<"              HOPE TO SEE YOU SOON           "<<endl;
-                	pos(70,23);
+                	
 					cout<<"---------------------------------------------"<<endl;
-                    pos(70,24);
+                   
 					cout<<"---------------------------------------------"<<endl;
                     choice='0';
                     exit(0);

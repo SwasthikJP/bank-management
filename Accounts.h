@@ -9,7 +9,6 @@ class Node							// Node class for the Accounts
     int acc;
     float balance;
     char type;
-    // string currency;
     int password;
 
     Node() // Default Constructor
@@ -20,10 +19,9 @@ class Node							// Node class for the Accounts
         balance=0;
         type=0;
         password=0;
-        // currency="\0";
     }
 
-    // Node(int a, Node *l=0,Node *r=0,float b=0,char t=0, string curr="\0",int pass=0) // Parametrized Constructor
+
     Node(int a, Node *l=0,Node *r=0,float b=0,char t=0,int pass=0) // Parametrized Constructor
 
     {
@@ -32,7 +30,6 @@ class Node							// Node class for the Accounts
         acc=a;
         balance=b;
         type=t;
-        // currency=curr;
         password=pass;
     }
 };
@@ -47,23 +44,20 @@ public:
 		return root == NULL;
 	}
 	
-	// Node* insert(Node *root,int a,float b, char t, string cur,int pass)			// Method to insert Accounts to the BST
+	
 	Node* insert(Node *root,int a,float b, char t,int pass)			// Method to insert Accounts to the BST
 
 	{
 		if (root == 0)
 		{
-			//  root = new Node(a,0,0,b,t,cur,pass);
 			 root = new Node(a,0,0,b,t,pass);
 
 		}
 		else if (a < root->acc)
 		{
-			// root->left = insert(root->left, a,b,t,cur,pass);
 			root->left = insert(root->left, a,b,t,pass);
 
 		}
-		// else root->right = insert(root->right, a,b,t,cur,pass);
 		else root->right = insert(root->right, a,b,t,pass);
 
 		return root;	
@@ -74,7 +68,6 @@ public:
 		if (n != 0)
 		{
 			inorder(n->left);
-			// cout << n->acc<<"\t\t"<<n->balance<<"\t    "<<n->type<<"\t\t"<<n->currency<<"\t  "<<n->password<<endl;
 			cout << n->acc<<"\t\t"<<n->balance<<"\t    "<<n->type<<"\t\t"<<"\t  "<<n->password<<endl;
 
 			inorder(n->right);

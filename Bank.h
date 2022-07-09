@@ -77,7 +77,6 @@ class Bank
         else if (choice=='2')
         {
            // Personal User Information
-            // cout<<"Acc No"<<"\t\t"<<"Cnic"<<"\t\t"<<"Phone"<<"\t\t\t"<<"Age"<<"\t\t"<<"Email"<<"\t\t"<<"Birth Date"<<"\t\t"<<"Name"<<endl<<endl;
             cout<<"Acc No"<<"\t\t"<<"\t\t"<<"Phone"<<"\t\t\t"<<"Age"<<"\t\t"<<"Email"<<"\t\t"<<"Birth Date"<<"\t\t"<<"Name"<<endl<<endl;
 
             users.inorder(head_user);
@@ -112,8 +111,6 @@ class Bank
         cout<<"Enter Full Name:";
         cin.ignore();
         getline(cin,na);
-        // cout<<"Enter Cnic:";
-        // cin>>nic;
         cout<<"Enter Phone number of format (03xxxxxxxxxx):";
         cin>>ph;
         cout<<"Enter Age: ";
@@ -151,8 +148,7 @@ class Bank
             return;
         }
 
-        // cout<<"Enter Currency(such as Rs, Dollars, pounds etc):";
-        // cin>>cur;
+     
 		fstream account_file;
 		fstream user_file;
 		account_file.open("account.txt",ios::app|ios::out);
@@ -161,7 +157,6 @@ class Bank
         if (account_file.is_open())
         {
            account_file.seekg(account_file.tellp());
-        //    account_file<<"\n"<<a<<" "<<t<<" "<<b<<" "<<cur<<" "<<pass;
            account_file<<"\n"<<a<<" "<<t<<" "<<b<<" "<<pass;
 
            account_file.seekg(account_file.tellp());
@@ -173,8 +168,7 @@ class Bank
         if (user_file.is_open())
         {
            user_file.seekg(user_file.tellp());
-        //    user_file<<"\n"<<a<<" "<<nic<<" "<<ph<<" "<<age<<" "<<em<<" "<<b_d<<" "<<na;
-           user_file<<"\n"<<a<<" "<<ph<<" "<<age<<" "<<em<<" "<<b_d<<" "<<na;
+         user_file<<"\n"<<a<<" "<<ph<<" "<<age<<" "<<em<<" "<<b_d<<" "<<na;
 
            user_file.seekg(user_file.tellp());
         }
@@ -192,7 +186,6 @@ class Bank
 		}
         else
         {
-            // accounts.insert(head,a,b,t,cur,pass);
             accounts.insert(head,a,b,t,pass);
 
         }
@@ -200,13 +193,11 @@ class Bank
         // Inserting to the User BST
 		if (head_user==0)
 		{
-		    // head_user=users.insert(0,a,na,nic,ph,age,em,b_d);
 		    head_user=users.insert(0,a,na,ph,age,em,b_d);
 
 		}
         else
 		{
-		    // users.insert(head_user,a,na,nic,ph,age,em,b_d);
 		    users.insert(head_user,a,na,ph,age,em,b_d);
 
 		}
@@ -218,12 +209,10 @@ class Bank
     int a; 
     float b; 
     char t; 
-    // string cur; 
     int pass; 
 
     //Users File Attributes
     string na; 
-    // string nic; 
     string ph; 
     string em; 
     string b_d; 
@@ -237,17 +226,14 @@ class Bank
         while (upd_acc.good())
         {
 
-            // upd_acc>>a>>t>>b>>cur>>pass;
             upd_acc>>a>>t>>b>>pass;
 
             if (account!=a)
             {
-                // temp_acc<<"\n"<<a<<" "<<t<<" "<<b<<" "<<cur<<" "<<pass;
                 temp_acc<<"\n"<<a<<" "<<t<<" "<<b<<" "<<pass;
 
             }
             else
-                // temp_acc<<"\n"<<a<<" "<<t<<" "<<ba<<" "<<cur<<" "<<pass;
                 temp_acc<<"\n"<<a<<" "<<t<<" "<<ba<<" "<<pass;
 
         }
@@ -278,12 +264,10 @@ class Bank
 
         while (del_acc.good())
         {
-            // del_acc>>a>>t>>b>>cur>>pass;
             del_acc>>a>>t>>b>>pass;
 
             if (a!=del_a)
             {
-                // temp_acc<<"\n"<<a<<" "<<t<<" "<<b<<" "<<cur<<" "<<pass;
                 temp_acc<<"\n"<<a<<" "<<t<<" "<<b<<" "<<" "<<pass;
 
             }
@@ -291,13 +275,12 @@ class Bank
 
         while (del_user.good())
         {
-            // del_user>>a>>nic>>ph>>em>>b_d;
             del_user>>a>>ph>>em>>b_d;
 
             getline(del_user,na);
              if (a!=del_a)
              {
-                //  temp_user<<"\n"<<a<<" "<<nic<<" "<<ph<<" "<<age<<" "<<em<<" "<<b_d<<" "<<na;
+              
                  temp_user<<"\n"<<a<<" "<<" "<<ph<<" "<<age<<" "<<em<<" "<<b_d<<" "<<na;
 
              }
@@ -377,7 +360,6 @@ class Bank
         Node *temp= accounts.searchNode(head, account);
 
         cout<<"-------BALANCE-------"<<endl;
-        // cout<<"-------"<<temp->balance<<" "<<temp->currency<<"-------"<<endl;
         cout<<"-------"<<temp->balance<<" "<<"-------"<<endl;
 
         system("pause");
@@ -409,7 +391,7 @@ class Bank
             if (money>temp->balance)  // withdraw amount shouldn't be greater than the amount in account
             {
                 cout<<"Current Balance is not enough"<<endl;
-                // cout<<"Your Account balance is"<<temp->balance<<" "<<temp->currency<<endl;
+              
                 cout<<"Your Account balance is"<<temp->balance<<" "<<endl;
 
             }
@@ -417,7 +399,6 @@ class Bank
             {
                 temp->balance=temp->balance-money;
                 cout<<"Amount withdrawn is:"<<money<<endl;
-                // cout<<"Remaining Balance in the Account is:"<<temp->balance<<" "<<temp->currency<<endl;
                 cout<<"Remaining Balance in the Account is:"<<temp->balance<<" "<<endl;
 
                 update_file(account,temp->balance);
@@ -459,7 +440,6 @@ class Bank
         {
             temp->balance=temp->balance + money;
             cout<<"Amount Deposit is:"<< money<< endl;
-            // cout<<"New Balance in the Account is:"<<temp->balance<<" "<<temp->currency<<endl;
             cout<<"New Balance in the Account is:"<<temp->balance<<" "<<endl;
 
             update_file(account,temp->balance);
@@ -492,10 +472,8 @@ class Bank
             }
             else
             {
-                // cout<<"Account No  || Balance  ||  Type ||  Currency ||  Password"<<endl<<endl;
                 cout<<"Account No  || Balance  ||  Type ||  Password"<<endl<<endl;
 
-                // cout << check1->acc <<"\t\t"<<check1->balance<<"\t    "<<check1->type<<"\t\t"<<check1->currency<<"\t  "<<check1->password<<endl;
                 cout << check1->acc <<"\t\t"<<check1->balance<<"\t    "<<check1->type<<"\t\t"<<"\t  "<<check1->password<<endl;
 
             }
@@ -504,7 +482,6 @@ class Bank
         else if (choice=='2')
         {
            // Personal User Information
-            // cout<<"Acc No"<<"\t\t"<<"Cnic"<<"\t\t"<<"Phone"<<"\t\t"<<"Age"<<"\t\t"<<"Email"<<"\t\t"<<"Birth Date"<<"\t\t"<<"Name"<<endl<<endl;
             cout<<"Acc No"<<"\t\t"<<"\t\t"<<"Phone"<<"\t\t"<<"Age"<<"\t\t"<<"Email"<<"\t\t"<<"Birth Date"<<"\t\t"<<"Name"<<endl<<endl;
 
             bool check2=users.searchNode(head_user,account);// Search from Users Information
@@ -525,18 +502,15 @@ class Bank
         {
             while(account_file.good())							// reaches the end of the file
             {
-            //    account_file>>a>>t>>b>>cur>>pass;
                account_file>>a>>t>>b>>pass;
 
                if (head==0)
                {
-                //   head=accounts.insert(0,a,b,t,cur,pass);
                   head=accounts.insert(0,a,b,t,pass);
 
                }
                else
                 {
-                    // accounts.insert(head,a,b,t,cur,pass);
                     accounts.insert(head,a,b,t,pass);
 
                 }
@@ -550,7 +524,6 @@ class Bank
     {
        int a=0;
        string na;
-    //    string nic;
        string ph;
        string age;
        string em;
@@ -560,19 +533,16 @@ class Bank
         {
             while(user_file.good())					// reaches the end of the file
             {
-                // user_file>>a>>nic>>ph>>age>>em>>b_d>>na;
                 user_file>>a>>ph>>age>>em>>b_d>>na;
 
                 if (head_user==0)
                 {
-                    // head_user=users.insert(0,a,na,nic,ph,age,em,b_d);
                     head_user=users.insert(0,a,na,ph,age,em,b_d);
 
                 }
                 else
                 {
-                    // users.insert(head_user,a,na,nic,ph,age,em,b_d);
-                    users.insert(head_user,a,na,ph,age,em,b_d);
+                   users.insert(head_user,a,na,ph,age,em,b_d);
 
                 }
             }
@@ -582,7 +552,6 @@ class Bank
     }
     void read_from_employee_file()
     {
-    	// string nam,j_t,j_d,pst,grad;
     	string nam,j_d,pst,grad;
 
 		int ag,sal,pin_e,i_d;
@@ -590,19 +559,16 @@ class Bank
         {
             while(emp_file1.good())					// reaches the end of the file
             {
-                // emp_file1>>i_d>>nam>>ag>>grad>>j_t>>j_d>>pst>>sal>>pin_e;
-                emp_file1>>i_d>>nam>>ag>>grad>>j_d>>pst>>sal>>pin_e;
+               emp_file1>>i_d>>nam>>ag>>grad>>j_d>>pst>>sal>>pin_e;
 
                 getline(emp_file1,na);
                 if (head_emp==NULL)
                 {
-                    // head_emp=bemp.insert_emp(NULL,sal,nam,j_t,j_d,pst,ag,i_d,grad,pin_e);
-                    head_emp=bemp.insert_emp(NULL,sal,nam,j_d,pst,ag,i_d,grad,pin_e);
+                   head_emp=bemp.insert_emp(NULL,sal,nam,j_d,pst,ag,i_d,grad,pin_e);
 
                 }
                 else
                 {
-                    // bemp.insert_emp(head_emp,sal,nam,j_t,j_d,pst,ag,i_d,grad,pin_e);
                     bemp.insert_emp(head_emp,sal,nam,j_d,pst,ag,i_d,grad,pin_e);
 
                 }
@@ -617,7 +583,6 @@ class Bank
 	//Employee Attributes
 	
 	string namee;
-	// string jj_tt;
 	string jj_dd;
 	string pstt;
 	string gradd;
@@ -626,8 +591,7 @@ class Bank
 	int e;
     void add_employee()
     {
-    	//getting information
-    	// string nam,j_t,j_d,pst,grad;
+    	
     	string nam,j_d,pst,grad;
 
 		int ag,sal,pin_e,i_d;
@@ -637,8 +601,7 @@ class Bank
     	cin>>ag;
     	cout<<"Enter Degree: ";
     	cin>>grad;
-    	// cout<<"Enter Job Type : ";
-    	// cin>>j_t;
+    	
     	cout<<"Enter Join Date : ";
     	cin>>j_d;
     	cout<<"Enter Post : ";
@@ -655,13 +618,11 @@ class Bank
     	//entering into a tree
     	if(head_emp==NULL)
     	{
-    		// head_emp=bemp.insert_emp(NULL,sal,nam,j_t,j_d,pst,ag,i_d,grad,pin_e);
     		head_emp=bemp.insert_emp(NULL,sal,nam,j_d,pst,ag,i_d,grad,pin_e);
 
 		}
 		else
 		{
-			// bemp.insert_emp(head_emp,sal,nam,j_t,j_d,pst,ag,i_d,grad,pin_e);
 			bemp.insert_emp(head_emp,sal,nam,j_d,pst,ag,i_d,grad,pin_e);
 
 		}
@@ -670,7 +631,6 @@ class Bank
     	
     	ofstream emp_file;
     	emp_file.open("Employee.txt",ios::app | ios::out);
-    	// emp_file<<i_d<<"\t"<<nam<<"\t"<<ag<<"\t"<<grad<<"\t"<<j_t<<"\t"<<j_d<<"\t"<<pst<<"\t"<<sal<<"\t"<<pin_e<<endl;
     	emp_file<<i_d<<"\t"<<nam<<"\t"<<ag<<"\t"<<grad<<"\t"<<j_d<<"\t"<<pst<<"\t"<<sal<<"\t"<<pin_e<<endl;
 
     	emp_file.close();
@@ -686,24 +646,15 @@ class Bank
 		int i_d,pin_e;
 		cout<<"Enter id : ";
 		cin>>i_d;
-		// cout<<"Enter Pin : ";
-		// cin>>pin_e;
+
 		node_emp *tem=bemp.search(head_emp,i_d);
 		fflush(stdin);
-		//node_emp *tem=bemp.search(head_emp,i_d);
 
-		// if(tem->pin==pin_e)
-		// {
-			// cout<<"Id"<<"\t\t"<<"Name"<<"\t\t"<<"Age"<<"\t\t"<<"Post"<<"\t\t"<<"Grade"<<"\t\t"<<"Salary"<<"\t\t"<<"Job-Type"<<"\t"<<"Join-Date"<<"\t\t"<<"Pin\n";
 			cout<<"Id"<<"\t\t"<<"Name"<<"\t\t"<<"Age"<<"\t\t"<<"Post"<<"\t\t"<<"Grade"<<"\t\t"<<"Salary"<<"\t"<<"Join-Date"<<"\t\t"<<"Pin\n";
 
-			// cout<<tem->id<<"\t\t"<<tem->name<<"\t\t"<<tem->age<<"\t\t"<<tem->post<<"\t\t"<<tem->grade<<"\t\t"<<tem->salary<<"\t\t"<<tem->job_type<<"\t\t"<<tem->join_date<<"\t\t"<<tem->pin<<endl;
 			cout<<tem->id<<"\t\t"<<tem->name<<"\t\t"<<tem->age<<"\t\t"<<tem->post<<"\t\t"<<tem->grade<<"\t\t"<<tem->salary<<"\t\t"<<tem->join_date<<"\t\t"<<tem->pin<<endl;
 
-		// }
-		// else{
-		// 	return ;
-		// }
+
 		system("pause");
 	}
 	
@@ -715,12 +666,10 @@ class Bank
 
         while (del_emp1.good())
         {
-            // del_emp1>>idd>>namee>>agee>>gradd>>jj_tt>>jj_dd>>pstt>>sall>>pinn;
             del_emp1>>idd>>namee>>agee>>gradd>>jj_dd>>pstt>>sall>>pinn;
 
             if (idd!=del_emp)
             {
-                // temp_emp<<"\n"<<idd<<" "<<namee<<" "<<agee<<" "<<gradd<<" "<<jj_tt<<" "<<jj_dd<<" "<<pstt<<" "<<sall<<" "<<pinn;
                 temp_emp<<"\n"<<idd<<" "<<namee<<" "<<agee<<" "<<gradd<<" "<<jj_dd<<" "<<pstt<<" "<<sall<<" "<<pinn;
 
             }

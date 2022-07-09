@@ -5,7 +5,6 @@ class node_emp{
 	public:
 		node_emp *left;
 		node_emp *right;
-		// string name,job_type,join_date,post,grade;
 		string name,join_date,post,grade;
 
 		int age,salary,pin,id;
@@ -14,7 +13,6 @@ class node_emp{
 			left=NULL;
 			right=NULL;
 			name='\0';
-			// job_type='\0';
 			join_date='\t';
 			post='\t';
 			age=0;
@@ -26,7 +24,6 @@ class node_emp{
 };
 class BST_employee{
 	public:
-		// node_emp *insert_emp(node_emp *head,int salary,string name,string job_type,string join_date,string post,int age,int i_d,string grade,int pin)
 		node_emp *insert_emp(node_emp *head,int salary,string name,string join_date,string post,int age,int i_d,string grade,int pin)
 
 		{
@@ -39,7 +36,6 @@ class BST_employee{
 				head->name=name;
 				head->age=age;
 				head->post=post;
-				// head->job_type=job_type;
 				head->join_date=join_date;
 				head->id=i_d;
 				head->grade=grade;
@@ -47,13 +43,11 @@ class BST_employee{
 			}
 			else if(i_d < head->id)
 			{
-				// head->left=insert_emp(head->left,salary,name,job_type,join_date,post,age,i_d,grade,pin);
 				head->left=insert_emp(head->left,salary,name,join_date,post,age,i_d,grade,pin);
 
 			}
 			else if(i_d > head->id)
 			{
-				// head->right=insert_emp(head->right,salary,name,job_type,join_date,post,age,i_d,grade,pin);
 				head->right=insert_emp(head->right,salary,name,join_date,post,age,i_d,grade,pin);
 
 			}
@@ -114,7 +108,6 @@ class BST_employee{
 			if(head!=NULL)
 			{
 				inorder(head->left);
-				// cout<<head->id<<"\t   "<<head->name<<"\t   "<<head->age<<"\t   "<<head->post<<"\t   "<<head->grade<<"\t   "<<head->salary<<"\t   "<<head->job_type<<"\t\t   "<<head->join_date<<"\t   "<<head->pin<<endl;
 				cout<<head->id<<"\t   "<<head->name<<"\t   "<<head->age<<"\t   "<<head->post<<"\t   "<<head->grade<<"\t   "<<head->salary<<"\t\t   "<<head->join_date<<"\t   "<<head->pin<<endl;
 
 				inorder(head->right);
@@ -126,7 +119,6 @@ class BST_employee{
 			{
 				ofstream emp_file;
 				emp_file.open("Employee.txt",ios::app|ios::out);
-				// emp_file<<head->id<<"\t\t"<<head->name<<"\t\t"<<head->age<<"\t\t"<<head->post<<"\t\t"<<head->grade<<"\t\t"<<head->salary<<"\t\t"<<head->job_type<<"\t\t"<<head->join_date<<"\t\t"<<head->pin<<endl;
 				emp_file<<head->id<<"\t\t"<<head->name<<"\t\t"<<head->age<<"\t\t"<<head->post<<"\t\t"<<head->grade<<"\t\t"<<head->salary<<"\t\t"<<"\t\t"<<head->join_date<<"\t\t"<<head->pin<<endl;
 
 				emp_file.close();
