@@ -9,6 +9,7 @@
 #include "Accounts.h"
 #include "User.h"
 #include "Employee.h"
+#include "validators.h"
 using namespace std;
 
 /*COORD line = {0,0};
@@ -92,11 +93,13 @@ class Bank
         int ba;// balance
         char ty;// type
         int pa;// Password
+        int day,month,year;
         cout<<"---Add Account---"<<endl<<endl;
         a=generate_account(); // Call the method to generate unique account number
         cout<<"Account no is:"<<a<<endl;
         cout<<"Enter Password(4-digit number):";
-        cin>>pa;
+        pa=getInput();
+        // cin>>pa;
 
         // This check makes sure the password is a 4 digit number
         if (pa/1000<10 && pa/1000>=1)
@@ -108,46 +111,73 @@ class Bank
             return;
         }
 
+       
+        do{
         cout<<"Enter Full Name:";
         cin.ignore();
         getline(cin,na);
+        if(na.length()<3){
+       cout<<"Name should be greater than 2 characters"<<endl;
+        }
+        }while(na.length()<3);
+
+        do{
         cout<<"Enter Phone number of format (03xxxxxxxxxx):";
         cin>>ph;
+
+         if(!isMobnum(ph)){
+         cout<<"Enter valid mobile number"<<endl;
+         }
+
+        }while(!isMobnum(ph));
+
+        do{
         cout<<"Enter Age: ";
         cin>>age;
+        if(stoi(age)<11){
+         cout<<"Age must be greater than 10"<<endl;
+        }
+        }while(stoi(age)<11);
+
+        do{
         cout<<"Enter email:";
         cin>>em;
-        cout<<"Enter Date Of Birth of format (DD//MM//YYYY):";
-        cin>>b_d;
+        if(!isEmail(em)){
+            cout<<"Enter valid email"<<endl;
+        }
+        }while(!isEmail(em));
+
+
+       do{
+        cout<<"Enter Date Of Birth of format (DD MM YYYY):";
+        // cin>>b_d;
+        cin>>day>>month>>year;
+         if(!isValidDate(day,month,year)){
+            cout<<"Enter valid date of birth"<<endl;
+         }
+       }while(!isValidDate(day,month,year));
+        b_d=to_string(day)+"/"+to_string(month)+"/"+to_string(year);
+
+       do{
         cout<<"Enter Balance:";
         cin>>ba;
-
-        // This check makes sure the balance is greater than 0
-        if (ba>0)
-            b=ba;
-        else
-        {
-            cout<<"Invalid Balance input"<<endl;
-            system("pause");
-            return;
-        }
+        if (ba<100 || ba>10000){
+           cout<<"Out of range balance (100-10000)"<<endl;
+       }
+       }while(ba<100 || ba>10000);
+        b=ba;
 
         cout<<"Enter Type of Account(Enter s for Savings, c for Current and l for loan):";
         cin>>ty;
 
+           do{
         //This check makes sure that the type of account is valid i.e. current, savings or loan
-        if(ty=='s'||ty=='S'||ty=='C'||ty=='c'||ty=='L'||ty=='l')
-        {
-        	t=ty;	
-		}
-        
-        else
-        {
+        if(!(ty=='s'||ty=='S'||ty=='C'||ty=='c'||ty=='L'||ty=='l'))
+        {	
             cout<<"Invalid Account Type input"<<endl;
-            system("pause");
-            return;
         }
-
+           }while(!(ty=='s'||ty=='S'||ty=='C'||ty=='c'||ty=='L'||ty=='l'));
+         t=ty;
      
 		fstream account_file;
 		fstream user_file;
@@ -386,8 +416,8 @@ class Bank
         }
 
         // This check makes sure the type of account must be current to withdraw money
-        if  (temp->type=='c'|| temp->type=='C')
-        {
+        // if  (temp->type=='c'|| temp->type=='C')
+        // {
             if (money>temp->balance)  // withdraw amount shouldn't be greater than the amount in account
             {
                 cout<<"Current Balance is not enough"<<endl;
@@ -399,17 +429,17 @@ class Bank
             {
                 temp->balance=temp->balance-money;
                 cout<<"Amount withdrawn is:"<<money<<endl;
-                cout<<"Remaining Balance in the Account is:"<<temp->balance<<" "<<endl;
+                cout<<"Remaining Balance in the Account is: Rs."<<temp->balance<<" "<<endl;
 
                 update_file(account,temp->balance);
             }
-        }
-        else
-        {
-            cout<<"-------------------INVALID-----------------------"<<endl;
-            cout<<"Account Type should be Current to withdraw balance"<<endl;
-            cout<<"Your Account type is:"<<temp->type<<endl;
-        }
+        // }
+        // else
+        // {
+        //     cout<<"-------------------INVALID-----------------------"<<endl;
+        //     cout<<"Account Type should be Current to withdraw balance"<<endl;
+        //     cout<<"Your Account type is:"<<temp->type<<endl;
+        // }
         system("pause");
     }
 
@@ -440,7 +470,7 @@ class Bank
         {
             temp->balance=temp->balance + money;
             cout<<"Amount Deposit is:"<< money<< endl;
-            cout<<"New Balance in the Account is:"<<temp->balance<<" "<<endl;
+            cout<<"New Balance in the Account is: Rs."<<temp->balance<<" "<<endl;
 
             update_file(account,temp->balance);
 
@@ -452,6 +482,82 @@ class Bank
             cout<<"Your Account type is:"<<temp->type<<endl;
         }
         system("pause");
+    }
+
+    void transfer(int account){
+        int recieveAcc,flag=0;
+ Node *rNode;
+         cout<<"-----Transfer Money------"<<endl;
+
+do{
+      cout<<"Enter reciever account no: ";
+            cin>>recieveAcc;
+            if(recieveAcc==account){
+                  cout<<"Accounts are same"<<endl;
+            
+             system("pause");
+             return;
+            }
+       rNode=accounts.searchNode(head,recieveAcc);
+
+        if(!rNode){
+            cout<<"Account not found"<<endl;
+            // cout<<"Enter any key to retry, 1 to exit";
+            flag=1;
+             system("pause");
+        }
+
+}while(!rNode);
+
+if(flag==1){
+    return;
+}
+
+ Node *temp=accounts.searchNode(head,account);
+        int money;
+        int ba;
+    
+    do{
+      
+        cout<<"Enter the amount to transer"<<endl;
+        cin>>ba;
+        // This check makes sure the money is greater than 0
+        if (ba>0)
+            money=ba;
+        else
+        {
+            cout<<"Invalid Balance input"<<endl;
+            system("pause");
+            return;
+        }
+
+        // This check makes sure the type of account must be current to withdraw money
+        // if  (temp->type=='c'|| temp->type=='C')
+        // {
+            if (money>temp->balance)  // withdraw amount shouldn't be greater than the amount in account
+            {
+                cout<<"Current Balance is not enough"<<endl;
+              
+                cout<<"Your Account balance is"<<temp->balance<<" "<<endl;
+            }
+    }while(money>temp->balance);
+
+  system("pause");
+    //sender acc
+                temp->balance=temp->balance-money;
+                cout<<"Amount withdrawn from acc no. "<<account<<" is: Rs. "<<money<<endl;
+                cout<<"Remaining Balance in the Account is:"<<temp->balance<<" "<<endl;
+                update_file(account,temp->balance);
+  system("pause");
+    //reciever acc
+            rNode->balance=rNode->balance + money;
+            cout<<"Amount Deposited on acc no. "<<recieveAcc<<" is: Rs. "<< money<< endl;
+            cout<<"New Balance in the Account is:"<<rNode->balance<<" "<<endl;
+
+            update_file(recieveAcc,rNode->balance);
+
+  system("pause");
+          
     }
 
     //This method search a particular user/Account
@@ -586,30 +692,107 @@ class Bank
 	string jj_dd;
 	string pstt;
 	string gradd;
+    
 	
-	int agee,sall,pinn,idd;
+	int agee,sall,pinn,idd,day,month,year;
 	int e;
     void add_employee()
     {
     	
     	string nam,j_d,pst,grad;
+        int tpass;
 
 		int ag,sal,pin_e,i_d;
-    	cout<<"Enter Name : ";
-    	cin>>nam;
-    	cout<<"Enter Age : ";
-    	cin>>ag;
-    	cout<<"Enter Degree: ";
-    	cin>>grad;
+   
+ do{
+nam.erase();
+        cout<<"Enter Full Name:";
+        // cin.ignore();
+        // getline(cin,nam);
+        cin>>nam;
+        if(nam.length()<3){
+       cout<<"Name should be greater than 2 characters"<<endl;
+        }
+        }while(nam.length()<3);
+
+ do{
+        cout<<"Enter Age: ";
+        cin>>ag;
+        if(ag<18){
+         cout<<"Age must be greater than 18"<<endl;
+        }
+        }while(ag<18);
+
+
+
+         do{
+       cout<<"Enter Degree: ";
+        cin.ignore();
+        getline(cin,grad);
+        if(grad.length()<2){
+       cout<<"Enter valid degree"<<endl;
+        }
+        }while(grad.length()<2);
+
     	
-    	cout<<"Enter Join Date : ";
-    	cin>>j_d;
-    	cout<<"Enter Post : ";
-    	cin>>pst;
-    	cout<<"Enter Salary : ";
-    	cin>>sal;
-    	cout<<"Enter 4-Digit Pin : ";
-    	cin>>pin_e;
+    	// cout<<"Enter Join Date : ";
+    	// cin>>j_d;
+
+
+do{
+        cout<<"Enter Join Date in format (DD MM YYYY):";
+        // cin>>b_d;
+        cin>>day>>month>>year;
+         if(!isValidDate(day,month,year)){
+            cout<<"Enter valid date"<<endl;
+         }
+       }while(!isValidDate(day,month,year));
+        j_d=to_string(day)+"/"+to_string(month)+"/"+to_string(year);
+
+
+    	// cout<<"Enter Post : ";
+    	// cin>>pst;
+
+         do{
+        cout<<"Enter Post: ";
+        cin.ignore();
+        getline(cin,pst);
+        if(pst.length()<3){
+       cout<<"Enter valid post"<<endl;
+        }
+        }while(pst.length()<3);
+
+
+        
+    	// cout<<"Enter Salary : ";
+    	// cin>>sal;
+
+ do{
+       cout<<"Enter Salary : ";
+        // cin.ignore();
+       cin>>sal;
+        if(sal<5000){
+       cout<<"Enter valid salary greater than 5000"<<endl;
+        }
+        }while(sal<5000);
+
+    	// cout<<"Enter 4-Digit Pin : ";
+    	// cin>>pin_e;
+
+       do{
+      cout<<"Enter 4-Digit Pin : ";
+        // cin.ignore();
+       tpass=getInput();
+
+ if (!(tpass/1000<10 && tpass/1000>=1))
+            cout<<"Password must be a 4 digit number"<<endl;
+        
+
+        }while(!(tpass/1000<10 && tpass/1000>=1));
+
+        pin_e=tpass;
+
+
     	cout<<"Generating Identification...!!"<<endl<<"Please Wait..."<<endl;
     	i_d=generate_account();
     	Sleep(50);

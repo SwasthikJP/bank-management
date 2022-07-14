@@ -3,6 +3,7 @@
 #include <string>
 #include <stdio.h>
 #include<windows.h>
+#include "passwordHide.h"
 #include "Bank.h"
 
 using namespace std;
@@ -51,9 +52,10 @@ class Menu
 			pos(62,13);
 			cout<<"4-Deposit Amount"<<endl;
 			pos(62,15);
-			cout<<"5-Delete Account"<<endl;
+            cout<<"5-Transfer Amount"<<endl;
+			cout<<"6-Delete Account"<<endl;
 			pos(62,17);
-			cout<<"6-back"<<endl;
+			cout<<"7-back"<<endl;
 			pos(62,19);
 			cout<<"Enter Choice:  ";
 			pos(75,19);
@@ -84,7 +86,14 @@ class Menu
                     bank.deposit(account);
                     break;
                 }
+
                 case '5':
+                {
+                    cout<<"Transfer Amount"<<endl;
+                    bank.transfer(account);
+                    break;
+                }
+                case '6':
                 {
                     char input;
                     cout<<"Delete Account"<<endl;
@@ -103,7 +112,7 @@ class Menu
                         cout<<"Invalid input"<<endl;
                     break;
                 }
-                case '6':
+                case '7':
                 {
                     cout<<"Back"<<endl;
                     choice='0';
@@ -131,8 +140,8 @@ class Menu
         cout<<"Enter Account no:"<<endl;
         cin>>account;
         cout<<"Enter Password:"<<endl;
-        cin>>passcode;
-        
+        passcode=getInput();
+
         check= bank.check_account(account,passcode); // calls method to confirm login
         
         if (check)
@@ -141,7 +150,7 @@ class Menu
 		}     
         else
         {
-          cout<<"Incorrect Account or Password.."<<endl;
+          cout<<"Incorrect Account no. or Password.."<<endl;
           system("pause");
         }
     }
@@ -548,10 +557,17 @@ case 1:
             {
                 case '1':
                 {
+                    //
+
+   
+     cout<<"Enter the Password: "<<endl;
+   pass=getInput();
+
+                    //
                 	
-                    cout<<"Enter the Password: "<<endl;
-                 
-                    cin>>pass;
+                  
+                //    cout<<"Enter the Password: "<<endl;
+                    // cin>>pass;
                     if(pass==pass_admin)
                     admin();
                     else
